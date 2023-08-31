@@ -17,7 +17,7 @@
          <div class="navbar bg-base-100">
             <div class="navbar-start">
                <div class="dropdown">
-                  <label tabindex="0" class="btn btn-ghost lg:hidden">
+                  <label tabindex="0" class="btn btn-ghost md:hidden">
                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -26,29 +26,29 @@
                   </label>
                   <ul tabindex="0"
                      class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                     <img src="./images/Logo.png" class="w-28 md:w-auto">
+                     <!-- <img src="./images/Logo.png" class="w-28 md:w-auto"> -->
+                     <button class="btn bg-[#25252533] text-[#252525]">Sort by view</button>
                   </ul>
                </div>
                <a class="btn btn-ghost normal-case text-xl"><img src="./images/Logo.png" class="w-28 md:w-auto"></a>
             </div>
-            <div class="navbar-center hidden lg:flex">
+            <div class="navbar-center hidden md:flex"> 
                <ul class="menu menu-horizontal px-1">
-                  <button class="btn">Sort by view</button>
+                  <button class="btn bg-[#25252533] text-[#252525]">Sort by view</button>
                </ul>
             </div>
             <div class="navbar-end">
-               <a class="btn bg-[#FF1F3D] text-white">Blog</a>
+               <a class="btn bg-[#FF1F3D] text-white" onclick="window.location.href = 'blog.html' ">Blog</a>
             </div>
          </div>
       </nav>
 
-      <div class="tabs flex justify-center mt-8" id="tabContainer">
-        
+      <div class="tabs flex justify-center mt-8" id="tabContainer">        
       </div>
 
    </header>
    <main>
-      <div id="cardContainer" class="my-10 grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div id="cardContainer" class="my-10 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-2">
 
       </div>
    </main>

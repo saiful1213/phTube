@@ -7,10 +7,10 @@ const loadCategory = async () => {
    categoryArr.forEach(category => {
       const div = document.createElement('div');
       div.innerHTML = `
-         <a class="tab tab-lifted bg-[#25252526] text-black mr-2" onclick="showData('${category.category_id}'); makeRed(this)">${category.category}</a>
+      <a class="tab tab-lifted bg-[#25252526] text-black mr-2" onclick="showData('${category.category_id}'); makeRed(this)">${category.category}</a>
       `;
       tabContainer.appendChild(div);
-   });
+   }); 
 }
 
 // show all card using cardId
@@ -19,7 +19,7 @@ const showData = async (categoryId) => {
    const data = await response.json();
    const tubeArr = data.data;
 
-   // show errMsg
+   // show errMsg in Drawing Category
    const errMsg = document.getElementById('errMsg');
    const errImg = document.getElementById('errImg');
    if (tubeArr.length == 0) {
@@ -34,7 +34,8 @@ const showData = async (categoryId) => {
    cardContainer.innerHTML = '';
 
    // loop the array to get the all objects
-   tubeArr.forEach(tubeObj => {      
+   tubeArr.forEach(tubeObj => {       
+      
       // convert secondsToHour
       const postedDate = tubeObj.others.posted_date.length !== 0 ? secondToHour(tubeObj.others.posted_date) : '';     
 
@@ -67,6 +68,7 @@ const showData = async (categoryId) => {
    });
 }
 
+// changeBgInCategory
 const makeRed = (data) => {
    data.style.backgroundColor = 'red';
    data.style.color = 'white';
@@ -77,7 +79,6 @@ const secondToHour = (sec) =>{
    const hour = Math.round(sec / (60*60));
    const minuteDivisior = Math.round(sec % (60*60));
    const minute = Math.round(minuteDivisior / 60);
-
    return `${hour}hrs ${minute}min ago`;
 }
 

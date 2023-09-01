@@ -9,7 +9,7 @@ const loadCategory = async () =>{
    categoryArr.forEach(category => {
       const div = document.createElement('div');
       div.innerHTML = `
-         <a class="tab tab-lifted bg-[#25252526] text-black mr-2" onclick="showData('${category.category_id}')">${category.category}</a>
+         <a class="tab tab-lifted bg-[#25252526] text-black mr-2" onclick="showData('${category.category_id}'); makeRed(this)">${category.category}</a>
       `;
       tabContainer.appendChild(div);
    });
@@ -20,13 +20,21 @@ const showData = async (categoryId) =>{
    const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryId}`);
    const data = await response.json();
    const tubeArr = data.data;
-   // console.log(tubeArr);
+   console.log(tubeArr);
+
+
+   if(tubeArr.length == 0){
+      console.log('array is empty');      
+   }   
+  
+   // const body = document.getElementById('body');
+   
    const cardContainer = document.getElementById('cardContainer');
    cardContainer.innerHTML = '';
    tubeArr.forEach(tubeObj =>{
-      console.log(tubeObj);
+      
+      
       const card = document.createElement('div');
-      // <i class="fa-solid fa-circle-check" style="color: #095cec;"></i>
       card.innerHTML = `
          <div><img src="${tubeObj.thumbnail}" class="rounded-lg h-48 w-full"></div>
          <div class="flex gap-3 mt-5">
@@ -47,6 +55,12 @@ const showData = async (categoryId) =>{
       `;
       cardContainer.appendChild(card);
    });
+}
+
+
+const makeRed = (data) =>{
+   data.style.backgroundColor = 'red';
+   data.style.color = 'white';
 }
 
 

@@ -7,10 +7,10 @@ const loadCategory = async () => {
    categoryArr.forEach(category => {
       const div = document.createElement('div');
       div.innerHTML = `
-      <a class="tab tab-lifted bg-[#25252526] text-black mr-2" onclick="showData('${category.category_id}'); makeRed(this)">${category.category}</a>
+      <a class="tab tabs-boxed px-4 bg-[#25252526] text-black mr-2" onclick="showData('${category.category_id}'); makeRed(this)">${category.category}</a>
       `;
       tabContainer.appendChild(div);
-   }); 
+   });
 }
 
 // show all card using cardId
@@ -25,26 +25,27 @@ const showData = async (categoryId) => {
    if (tubeArr.length == 0) {
       errMsg.classList.remove('hidden');
       errImg.classList.remove('hidden');
-   }else{
+   } else {
       errMsg.classList.add('hidden');
       errImg.classList.add('hidden');
-   }   
-   
+   }
+
    const cardContainer = document.getElementById('cardContainer');
    cardContainer.innerHTML = '';
 
    // loop the array to get the all objects
-   tubeArr.forEach(tubeObj => {       
-      
+   tubeArr.forEach(tubeObj => {
+
       // convert secondsToHour
-      const postedDate = tubeObj.others.posted_date.length !== 0 ? secondToHour(tubeObj.others.posted_date) : '';     
+      const postedDate = tubeObj.others.posted_date.length !== 0 ? secondToHour(tubeObj.others.posted_date) : '';
 
       // creat a div named card and set innerHTML to show the data on UI
       const card = document.createElement('div');
       card.innerHTML = `
          <div class="relative">
             <img src="${tubeObj.thumbnail}" class="rounded-lg h-48 w-full">
-            <p class="absolute bottom-4 text-white text-xs bg-[#171717] p-1 rounded right-4">${postedDate}</p>         
+            ${postedDate ? `<p class="absolute bottom-4 text-white text-xs p-1 bg-[#171717] rounded right-4">${postedDate}</p>` :
+            `<p class="absolute bottom-4 text-white text-xs p-1 rounded right-4"></p>`}                  
          </div>
          <div class="flex gap-3 mt-5">
             <div>
@@ -74,14 +75,13 @@ const makeRed = (data) => {
    data.style.color = 'white';
 }
 
-// conver secondToHour function
-const secondToHour = (sec) =>{
-   const hour = Math.round(sec / (60*60));
-   const minuteDivisior = Math.round(sec % (60*60));
+// convert secondToHour function
+const secondToHour = (sec) => {
+   const hour = Math.round(sec / (60 * 60));
+   const minuteDivisior = Math.round(sec % (60 * 60));
    const minute = Math.round(minuteDivisior / 60);
    return `${hour}hrs ${minute}min ago`;
 }
-
 
 loadCategory();
 showData('1000');
